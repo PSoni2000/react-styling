@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import Button from '../../UI/Button/Button';
-import styles from './CourseInput.module.css';
+import Button from "../../UI/Button/Button";
+import styles from "./CourseInput.module.css";
 
+// import styled from 'styled-component'
 // const FormControl = styled.div`
 //   margin: 0.5rem 0;
 
@@ -30,37 +31,43 @@ import styles from './CourseInput.module.css';
 //   }
 // `;
 
-const CourseInput = props => {
-  const [enteredValue, setEnteredValue] = useState('');
-  const [isValid, setIsValid] = useState(true);
+const CourseInput = (props) => {
+	const [enteredValue, setEnteredValue] = useState("");
+	const [isValid, setIsValid] = useState(true);
 
-  const goalInputChangeHandler = event => {
-    if (event.target.value.trim().length > 0) {
-      setIsValid(true);
-    }
-    setEnteredValue(event.target.value);
-  };
+	const goalInputChangeHandler = (event) => {
+		if (event.target.value.trim().length > 0) {
+			setIsValid(true);
+		}
+		setEnteredValue(event.target.value);
+	};
 
-  const formSubmitHandler = event => {
-    event.preventDefault();
-    if (enteredValue.trim().length === 0) {
-      setIsValid(false);
-      return;
-    }
-    props.onAddGoal(enteredValue);
-  };
+	const formSubmitHandler = (event) => {
+		event.preventDefault();
+		if (enteredValue.trim().length === 0) {
+			setIsValid(false);
+			return;
+		}
+		props.onAddGoal(enteredValue);
+	};
 
-  return (
-    <form onSubmit={formSubmitHandler}>
-      <div
-        className={`${styles['form-control']} ${!isValid && styles.invalid}`}
-      >
-        <label>Course Goal</label>
-        <input type="text" onChange={goalInputChangeHandler} />
-      </div>
-      <Button type="submit">Add Goal</Button>
-    </form>
-  );
+	return (
+		<form onSubmit={formSubmitHandler}>
+			{/* <FormControl className={!isValid && 'invalid'}> */}
+			{/* <FormControl invalid={!isValid}> */}
+			{/* invalid Attribute can we access in styled component */}
+			<div
+				className={`${styles["form-control"]} ${!isValid && styles.invalid}`}
+			>
+				{/* Inline Styles */}
+				{/* <label style={{ color: !isValid ? "red" : "black" }}>Course Goal</label> */}
+
+				<label>Course Goal</label>
+				<input type="text" onChange={goalInputChangeHandler} />
+			</div>
+			<Button type="submit">Add Goal</Button>
+		</form>
+	);
 };
 
 export default CourseInput;
